@@ -84,6 +84,10 @@ class Scanner {
             if (match('/')) {
                 // Комментарий до конца строки
                 while (peek() != '\n' && !isAtEnd()) advance();
+            } else if (match('*')) {
+                advance();
+                while (peek() != '*' && peekNext() != '/') advance();
+                advance();advance();
             } else {
                 addToken(SLASH);
             }
